@@ -1,0 +1,3 @@
+Uso de IA:
+
+La IA me ayudo a completar las validacicones de los formularios, asi como la verificación de errores que tuve al momento de ejecutar y conectar el servidor

@@ -1,0 +1,42 @@
+<div class="app-container">
+  <h2>App Notas</h2>
+
+  <form class="note-form" [formGroup]="formNota" novalidate (ngSubmit)="guardar()">
+    <div class="field-group">
+      <input
+        type="text"
+        formControlName="titulo"
+        placeholder="Título de la nota"
+        [class.invalid]="tituloControl?.invalid && tituloControl?.touched">
+      @if (tituloControl?.invalid && tituloControl?.touched) {
+        <small class="error-message">El título es obligatorio.</small>
+      }
+    </div>
+
+    <div class="field-group">
+      <input
+        type="text"
+        formControlName="contenido"
+        placeholder="Contenido de la nota..."
+        [class.invalid]="contenidoControl?.invalid && contenidoControl?.touched">
+      @if (contenidoControl?.invalid && contenidoControl?.touched) {
+        <small class="error-message">El contenido es obligatorio.</small>
+      }
+    </div>
+
+    <button type="submit" [disabled]="formNota.invalid">Guardar</button>
+  </form>
+
+  <hr>
+
+  <div class="notes-list">
+    @for (nota of notaService.notas(); track nota._id || $index) {
+      <div class="note-card">
+        <h3>{{ nota.titulo }}</h3>
+        <p>{{ nota.contenido }}</p>
+      </div>
+    } @empty {
+      <p>No tienes notas guardadas.</p>
+    }
+  </div>
+</div>
